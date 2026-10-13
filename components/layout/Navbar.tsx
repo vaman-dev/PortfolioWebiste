@@ -34,7 +34,14 @@ export default function Navbar() {
   };
 
   useEffect(() => {
-    closeMenu();
+    if (!menuOpenRef.current) return;
+
+    const closeAfterNavigation = window.setTimeout(() => {
+      menuOpenRef.current = false;
+      setMenuOpen(false);
+    }, 0);
+
+    return () => window.clearTimeout(closeAfterNavigation);
   }, [pathname]);
 
   useEffect(() => {
