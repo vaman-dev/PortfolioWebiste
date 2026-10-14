@@ -11,7 +11,7 @@ export const siteData = {
     github: "https://github.com/vaman-dev",
     linkedin: "https://www.linkedin.com/in/apoorva09varah/",
   },
-  resumeUrl: "/apoorva%20resume%20(1).pdf",
+  resumeUrl: "/apoorva%20resume(1).pdf",
   skills: {
     gameDev: ["Unity", "C#", "Gameplay Systems", "AI Behaviors", "UI", "Physics"],
     aiMl: ["Python", "ML Workflows", "Inference Integration", "LLM Experiments"],
