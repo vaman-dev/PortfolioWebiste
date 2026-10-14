@@ -49,4 +49,14 @@ export const projects: Project[] = [
     image: "/images/VR%20Sand%20Model.png",
     featured: true,
   },
+  {
+    slug: "child-game",
+    title: "ChildGame",
+    summary:
+      "A 2D educational coloring, tracing, and drawing game for preschool and early-learning audiences, built around touch interaction and guided creative play.",
+    role: "Gameplay Programmer",
+    tech: ["Unity", "C#", "ScriptableObjects", "RenderTextures", "Multi-touch"],
+    image: "/images/ChildGame.png",
+    featured: true,
+  },
 ];

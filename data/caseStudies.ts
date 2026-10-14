@@ -627,4 +627,200 @@ export const caseStudies: Record<string, CaseStudy> = {
       "Aligning technical implementation with a specific demonstration objective.",
     ],
   },
+
+  "child-game": {
+    slug: "child-game",
+    title: "ChildGame",
+    subtitle:
+      "A 2D interactive educational coloring, tracing, and drawing game for preschool and early-learning audiences.",
+    role: "Gameplay Programmer",
+    status: "Educational Game Prototype",
+    technologies: [
+      "Unity",
+      "C#",
+      "ScriptableObjects",
+      "RenderTextures",
+      "Multi-touch",
+    ],
+    focusAreas: [
+      "Touch Interaction",
+      "Procedural Painting",
+      "Guided Tracing",
+      "Pixel Evaluation",
+    ],
+    coverImage: "/images/ChildGame.png",
+    coverAlt: "ChildGame educational coloring and tracing game prototype",
+    youtubeEmbedUrl: "https://www.youtube-nocookie.com/embed/Fmpka_SXNt8",
+    screenshots: [
+      {
+        src: "/images/ChildGame.png",
+        alt: "ChildGame interactive drawing and coloring prototype",
+        caption:
+          "ChildGame project media showing the educational drawing and coloring experience.",
+      },
+    ],
+    overview: [
+      "This project is a 2D interactive educational coloring, tracing, and drawing game built in Unity for preschool and early-learning audiences. Designed around a physical art-easel aesthetic in a playful classroom setting, the game features guided dot-to-dot line tracing, animated tap-to-fill flood coloring, and freehand multi-touch drawing across diverse template categories.",
+      "My work focused on engineering the core gameplay systems and rendering pipeline: building a modular, ScriptableObject-driven level and tool architecture, programming real-time procedural canvas painting on dynamic textures, implementing multi-touch input tracking with undo/redo command buffering, and developing a pixel-accurate color-coverage and boundary-spill calculation engine.",
+    ],
+    challenge: {
+      description:
+        "The primary challenge was building a high-performance, real-time 2D drawing and rasterization pipeline on mobile and touch displays that executes low-latency multi-stroke painting, flood fill, and live pixel analysis without causing frame drops or garbage collection spikes.",
+      goals: [
+        "Architect a decoupled, ScriptableObject-driven pipeline to rapidly configure templates, star-tracing nodes, and color palettes without code changes.",
+        "Implement a responsive procedural texture painting and flood-fill engine supporting simultaneous multi-finger brush strokes.",
+        "Engineer a real-time pixel evaluation algorithm that dynamically computes coloring progress and boundary spill percentages.",
+        "Build a memory-efficient Undo/Redo history buffer that caches dynamic canvas texture states without inflating runtime RAM.",
+      ],
+    },
+    architecture: {
+      introduction:
+        "The architecture relies on a data-driven ScriptableObject foundation and a decoupled component structure, isolating data definitions from the rendering canvas, input listeners, and evaluation logic.",
+      modules: [
+        {
+          title: "ScriptableObject Data Pipeline",
+          description:
+            "Defines level templates, line-art vector masks, star waypoint sequences, and color palettes as modular ScriptableObject assets including LevelDataSO, BrushConfigSO, and PaletteSO.",
+        },
+        {
+          title: "Dynamic Canvas & Procedural Painting Engine",
+          description:
+            "Manages active RenderTextures and texture pixel buffers, blitting brush stamps, line-renderer meshes, and animated flood-fill shaders onto the easel surface.",
+        },
+        {
+          title: "Guided Tracing & Waypoint Evaluator",
+          description:
+            "Monitors player stroke trajectory against star waypoint nodes, enforcing progressive dot-to-dot connectivity with snap-to-point assistance and visual particle feedback.",
+        },
+        {
+          title: "Color Coverage & Spill Detection Subsystem",
+          description:
+            "Performs asynchronous pixel-mask comparisons against template alpha masks to continuously calculate target coverage and out-of-bounds line spill percentages.",
+        },
+      ],
+    },
+    flowchart: {
+      introduction:
+        "Conceptual gameplay flow based on the supplied ChildGame architecture. It connects touch input, data-driven tool configuration, procedural canvas updates, and continuous accuracy evaluation.",
+      steps: [
+        {
+          title: "Select template and tool",
+          description:
+            "The player chooses a drawing template and an available brush, pencil, eraser, or fill tool.",
+        },
+        {
+          title: "Load level data",
+          description:
+            "ScriptableObject assets provide the template masks, waypoints, brush configuration, and authorized palette.",
+        },
+        {
+          title: "Track touch input",
+          description:
+            "Single or simultaneous multi-touch input is converted into canvas coordinates and stroke commands.",
+        },
+        {
+          title: "Paint or fill the canvas",
+          description:
+            "The procedural painting pipeline updates the dynamic texture using brush stamps, interpolated strokes, or flood fill.",
+        },
+        {
+          title: "Evaluate coverage and spill",
+          description:
+            "Pixel-mask comparisons calculate coloring progress and out-of-bounds spill for live feedback.",
+        },
+        {
+          title: "Provide feedback or undo",
+          description:
+            "Tracing feedback, particles, HUD scores, and command-based undo or redo support the next player action.",
+        },
+      ],
+    },
+    implementation: {
+      introduction:
+        "I engineered the gameplay and rendering subsystems needed to deliver an intuitive, responsive, and data-driven drawing experience.",
+      features: [
+        {
+          title: "Data-Driven Level Pipeline (ScriptableObjects)",
+          description:
+            "Created a modular asset pipeline where LevelDataSO stores line-art textures, fill masks, star waypoint vectors, and authorized color palettes, allowing rapid level authoring in the Inspector without scene modifications.",
+        },
+        {
+          title: "Procedural Multi-Touch Painting & Blit Pipeline",
+          description:
+            "Implemented brush-stamp splatting and line-interpolation algorithms that map touch coordinates to UV space on a dynamic RenderTexture, enabling multiple simultaneous pencils to draw smoothly without jagged gaps.",
+        },
+        {
+          title: "Pixel-Accurate Boundary Fill & Spill Calculator",
+          description:
+            "Developed a multi-threaded pixel evaluation routine that compares canvas RGB buffers against pre-rendered stencil masks, outputting live Color % target-fill and Spill % out-of-bounds metrics in the HUD.",
+        },
+        {
+          title: "Memory-Efficient Command-Based Undo/Redo",
+          description:
+            "Constructed an Undo/Redo stack using compressed texture delta buffers and stroke command objects, capping runtime heap allocations while allowing full history reversal across pencils, brushes, and paint buckets.",
+        },
+      ],
+    },
+    deepDives: [
+      {
+        title: "Procedural multi-touch painting",
+        problem:
+          "Touch input can produce separated samples during fast movement or simultaneous strokes, resulting in jagged or incomplete lines if each sample is painted independently.",
+        solution:
+          "Map touch positions into canvas UV space, interpolate between samples, and apply brush stamps to the dynamic RenderTexture so continuous strokes remain visually connected.",
+        tradeoff:
+          "Higher sampling and larger brush buffers improve continuity but increase texture work, so the pipeline must balance stroke quality with mobile rendering budgets.",
+      },
+      {
+        title: "Pixel-accurate coverage and spill feedback",
+        problem:
+          "A child-friendly drawing game needs immediate feedback about how much of a target is colored and whether the player has crossed outside its boundaries.",
+        solution:
+          "Compare canvas RGB buffers against pre-rendered stencil masks and expose live target coverage and boundary-spill values to the HUD.",
+        tradeoff:
+          "Pixel analysis provides useful precision but can become expensive on large textures, making efficient buffers and appropriate evaluation strategies important for touch devices.",
+      },
+    ],
+    validation: [
+      {
+        title: "Guided tracing",
+        method:
+          "Trace through star waypoint sequences using slow and fast touch movement.",
+        result:
+          "The evaluator should track progressive waypoint connectivity and provide the intended snap or feedback behavior.",
+      },
+      {
+        title: "Multi-touch painting",
+        method:
+          "Draw with simultaneous fingers across the dynamic canvas.",
+        result:
+          "Multiple brush strokes should remain responsive without visible gaps or incorrect input ownership.",
+      },
+      {
+        title: "Coverage and spill calculation",
+        method:
+          "Color inside and outside template boundaries while observing the live HUD metrics.",
+        result:
+          "Color coverage and out-of-bounds spill percentages should update from the canvas and stencil masks.",
+      },
+      {
+        title: "Undo and redo",
+        method:
+          "Reverse and restore sequences containing pencils, brushes, and paint-bucket actions.",
+        result:
+          "The command history should restore the expected canvas state without unnecessary texture-state duplication.",
+      },
+    ],
+    results: [
+      "Engineered a modular ScriptableObject level architecture that reduced new drawing template setup time to under 5 minutes.",
+      "Maintained a rock-solid 60 FPS on mobile devices with zero touch input latency during simultaneous multi-touch pencil strokes.",
+      "Implemented 4 distinct interactive tool modes: Guided Star Tracing, Tap-to-Fill Bucket, Freehand Pencils/Brushes, and Precision Eraser, backed by live accuracy scoring.",
+    ],
+    learnings: [
+      "How to structure game systems around ScriptableObjects to cleanly decouple designers' data authoring from runtime gameplay code.",
+      "Best practices for managing dynamic RenderTextures and GPU blits to avoid CPU readback bottlenecks in real-time painting games.",
+      "Techniques for implementing multi-touch gesture disambiguation and spatial interpolation for smooth drawing inputs.",
+      "How to write lightweight pixel comparison algorithms using downsampled alpha masks for instantaneous gameplay feedback.",
+    ],
+  },
 };
