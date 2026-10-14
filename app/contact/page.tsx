@@ -3,6 +3,7 @@ import Link from "next/link";
 import PageContainer from "@/components/layout/PageContainer";
 import Reveal from "@/components/ui/Reveal";
 import { siteData } from "@/data/site";
+import { createPageMetadata } from "@/lib/seo";
 
 /* Legacy viewer retained below only as a migration reference.
 export function LegacyContactPage() {
@@ -132,10 +133,12 @@ export function LegacyContactPage() {
 }
 */
 
-export const metadata: Metadata = {
-  title: "Contact | Apoorva",
-  description: "Contact Apoorva for Unity gameplay programming, game systems engineering, XR, and interactive AI opportunities.",
-};
+export const metadata: Metadata = createPageMetadata({
+  title: "Contact",
+  description:
+    "Contact Apoorva Sharma about Unity gameplay programming, game systems engineering, XR, and interactive AI opportunities.",
+  path: "/contact",
+});
 
 const contactLinks = [
   { number: "01", title: "GitHub", description: "Explore my source code, Unity prototypes, and technical projects.", label: "Explore GitHub", href: siteData.socials.github },

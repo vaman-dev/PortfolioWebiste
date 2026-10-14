@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { absoluteUrl, isProductionIndexable } from "@/lib/seo";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -12,11 +13,41 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Apoorva | Unity Gameplay Programmer",
-    template: "%s | Apoorva",
+    default: "Apoorva Sharma — Unity Gameplay Programmer",
+    template: "%s | Apoorva Sharma",
   },
   description:
-    "Unity gameplay programmer building responsive player systems, modular gameplay architecture, and AI-powered interactive experiences.",
+    "Apoorva Sharma is a Unity Gameplay Programmer building gameplay systems, interactive AI, character controllers, and XR experiences.",
+  metadataBase: new URL(absoluteUrl()),
+  alternates: {
+    canonical: absoluteUrl("/"),
+  },
+  openGraph: {
+    type: "website",
+    url: absoluteUrl("/"),
+    siteName: "Apoorva Sharma",
+    title: "Apoorva Sharma — Unity Gameplay Programmer",
+    description:
+      "Gameplay systems, interactive AI, character controllers, and XR experiences built with Unity.",
+    images: [
+      {
+        url: absoluteUrl("/opengraph-image"),
+        width: 1200,
+        height: 630,
+        alt: "Apoorva Sharma — Unity Gameplay Programmer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Apoorva Sharma — Unity Gameplay Programmer",
+    description:
+      "Gameplay systems, interactive AI, character controllers, and XR experiences built with Unity.",
+    images: [absoluteUrl("/opengraph-image")],
+  },
+  robots: isProductionIndexable()
+    ? { index: true, follow: true }
+    : { index: false, follow: false, noarchive: true },
 };
 
 export default function RootLayout({

@@ -3,6 +3,7 @@ import { projects } from "@/data/projects";
 import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo";
 
 /*
 function LegacyProjectsPage() {
@@ -67,10 +68,12 @@ function LegacyProjectsPage() {
 }
 */
 
-export const metadata: Metadata = {
-  title: "Projects | Apoorva",
-  description: "Gameplay programming projects, Unity systems, and interactive AI experiments.",
-};
+export const metadata: Metadata = createPageMetadata({
+  title: "Projects",
+  description:
+    "Gameplay programming projects, Unity systems, interactive AI experiments, and XR prototypes by Apoorva Sharma.",
+  path: "/projects",
+});
 
 export default function ProjectsPage() {
   return (

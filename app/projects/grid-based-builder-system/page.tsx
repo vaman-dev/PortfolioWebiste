@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import ProjectCaseStudy from "@/components/projects/ProjectCaseStudy";
 import { caseStudies } from "@/data/caseStudies";
+import { createPageMetadata } from "@/lib/seo";
 
 function LegacyGridBasedBuilderSystemPage() {
   return (
@@ -141,10 +142,12 @@ void LegacyGridBasedBuilderSystemPage;
 
 const project = caseStudies["grid-based-builder-system"];
 
-export const metadata: Metadata = {
-  title: "Grid-Based Builder System | Apoorva",
+export const metadata: Metadata = createPageMetadata({
+  title: project.title,
   description: project.subtitle,
-};
+  path: `/projects/${project.slug}`,
+  image: project.coverImage,
+});
 
 export default function GridBasedBuilderSystemPage() {
   return <ProjectCaseStudy project={project} />;

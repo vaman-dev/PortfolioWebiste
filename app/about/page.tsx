@@ -4,11 +4,14 @@ import Link from "next/link";
 import PageContainer from "@/components/layout/PageContainer";
 import Reveal from "@/components/ui/Reveal";
 import { siteData } from "@/data/site";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "About | Apoorva",
-  description: "Learn about Apoorva's background in Unity gameplay programming, interactive AI, XR development, and software engineering.",
-};
+export const metadata: Metadata = createPageMetadata({
+  title: "About",
+  description:
+    "Learn about Apoorva Sharma's background in Unity gameplay programming, interactive AI, XR development, and software engineering.",
+  path: "/about",
+});
 
 const experience = [
   { organization: "Direction Educare", position: "Unity Development Experience", description: "Worked on interactive applications using Unity, gaining experience in gameplay implementation, technical problem-solving, and development workflows.", type: "Industry Experience" },
