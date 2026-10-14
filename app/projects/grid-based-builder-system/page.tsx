@@ -46,7 +46,7 @@ function LegacyGridBasedBuilderSystemPage() {
         {/* Image */}
         <div className="w-full h-96 rounded-lg overflow-hidden mb-12">
           <Image
-            src="/images/GridGame.png"
+            src="/images/GridGame.png?v=2"
             alt="Grid-Based Builder System"
             width={900}
             height={900}
@@ -113,7 +113,7 @@ function LegacyGridBasedBuilderSystemPage() {
           <iframe
             width="100%"
             height="400"
-            src="https://www.youtube.com/embed/3ZkEOCKSBFI"
+            src="https://www.youtube.com/embed/yF2ZGbEtXm0"
             title="Grid-Based Builder System Demo"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

@@ -60,6 +60,7 @@ export default function FeaturedProjects() {
                       src={project.image}
                       alt={`${project.title} project preview`}
                       fill
+                      loading={project.slug === "ai-npc-experiments" ? "eager" : "lazy"}
                       sizes="(max-width: 767px) 100vw, 50vw"
                       className="object-cover transition-transform duration-500 group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:transform-none"
                     />

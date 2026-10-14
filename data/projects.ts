@@ -16,7 +16,7 @@ export const projects: Project[] = [
       "A Unity prototype exploring grid placement, multi-tile building logic, rotation-aware footprints, and data-driven architecture for builder-style gameplay systems.",
     role: "Gameplay Systems Programmer",
     tech: ["Unity", "C#", "Grid Systems", "ScriptableObjects"],
-    image: "/images/grid-based-builder.png",
+    image: "/images/GridGame.png?v=2",
     featured: true,
   },
   {
@@ -33,20 +33,20 @@ export const projects: Project[] = [
     slug: "ai-npc-experiments",
     title: "AI NPC Experiments",
     summary:
-      "Prototype work exploring AI-enhanced gameplay interactions, behavior systems, and intelligent player responses.",
+      "A Unity 6 runtime integration connecting Conversational AI, real-time NPC embodiment, WebRTC audio, and autonomous gameplay actions.",
     role: "Gameplay / AI Programmer",
-    tech: ["Unity", "Python", "AI Integration", "NPC Systems"],
-    image: "/images/GridGame.png",
+    tech: ["Unity 6", "C#", "WebRTC", "LiveKit", "NPC Systems"],
+    image: "/images/AI%20NPC%20EXPERIMENT.png",
     featured: true,
   },
   {
     slug: "advanced-third-person-controller",
-    title: "Advanced Third Person Controller",
+    title: "VR Desert Experience — Soldier's Perspective",
     summary:
-      "Physics-based movement system featuring procedural vaulting, dynamic foot placement, and predictive landing systems.",
-    role: "Gameplay Systems Engineer",
-    tech: ["Unity", "C#", "Animation Rigging", "IK"],
-    image: "/images/GridGame.png",
+      "An immersive virtual reality environment created for an AIT sand-model presentation, helping communicate a remote desert landscape from a soldier's perspective.",
+    role: "Programmer",
+    tech: ["Unity", "Virtual Reality", "Environment Presentation", "AIT Sand Model"],
+    image: "/images/VR%20Sand%20Model.png",
     featured: true,
   },
 ];
